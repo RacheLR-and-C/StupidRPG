@@ -1,23 +1,12 @@
 using System;
 using UnityEngine;
 
-public abstract class BaseItem : MonoBehaviour, IPickupable
+public abstract class BaseItem : MonoBehaviour, IInteractable
 {
 	public bool _isPickedUp { get; private set; }
 
-	private Action PickedUp => OnDestroy;
-
-	public virtual void PickUp()
+	public void Interact()
 	{
 		_isPickedUp = true;
-		
-		OnDestroy();
-	}
-	
-	private void OnDestroy() 
-	{
-		PickedUp?.Invoke();
-		
-		Destroy(this.gameObject);
 	}
 }

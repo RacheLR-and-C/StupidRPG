@@ -6,6 +6,7 @@ public class PlayerInput : MonoBehaviour
 {
 	[Header("Model")]
 	[SerializeField] private PlayerMover _playerMover;
+	[SerializeField] private PlayerInteracter _playerInteracter;
 	
 	[Header("View")]
 	[SerializeField] private PlayerAnimationView _playerAnimationView;
@@ -17,7 +18,10 @@ public class PlayerInput : MonoBehaviour
 		_inputMap = new InputMap();
 		
 		_playerMover = GetComponent<PlayerMover>();
+		_playerInteracter = GetComponent<PlayerInteracter>();
 		_playerAnimationView = GetComponent<PlayerAnimationView>();
+		
+		_inputMap.PlayScene.Interact.performed += context => _playerInteracter.Interact();
 	}
 	
 	private void OnEnable()
